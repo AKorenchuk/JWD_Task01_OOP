@@ -18,7 +18,6 @@ public class Main {
 		ServiceFactory factory = ServiceFactory.getInstance();
 		ApplianceService service = factory.getApplianceService();
 
-
 		//////////////////////////////////////////////////////////////////
 
 		Criteria<Oven> criteriaOven = new Criteria<Oven>();
@@ -43,7 +42,7 @@ public class Main {
 
 		Criteria<VacuumCleaner> criteriaVCl = new Criteria<VacuumCleaner>();
 		criteriaVCl.setApplianceType("VacuumCleaner");
-		criteriaVCl.add(VacuumCleaner.FILTER_TYPE, "A");
+		criteriaVCl.add(VacuumCleaner.FILTER_TYPE, "C");
 
 		appliance = service.find(criteriaVCl);
 
@@ -53,7 +52,7 @@ public class Main {
 
 		criteriaOven = new Criteria<Oven>();
 		criteriaOven.setApplianceType("Oven");
-		criteriaOven.add(Oven.HEIGHT, "456");
+		criteriaOven.add(Oven.HEIGHT, "40");
 		criteriaOven.add(Oven.DEPTH, 60.0);
 
 		appliance = service.find(criteriaOven);
@@ -64,8 +63,8 @@ public class Main {
 
 		Criteria<TabletPC> criteriaTabletPC = new Criteria<TabletPC>();
 		criteriaTabletPC.setApplianceType("TabletPC");
-		//criteriaTabletPC.add(TabletPC.COLOR, "BLUE");
-		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, 14);
+		criteriaTabletPC.add(TabletPC.COLOR, "BLUE");
+		criteriaTabletPC.add(TabletPC.DISPLAY_INCHES, " big ");
 		criteriaTabletPC.add(TabletPC.MEMORY_ROM, 8000);
 
 		appliance = service.find(criteriaTabletPC);

@@ -13,14 +13,6 @@ public class VacuumCleaner extends Appliance{
 
     public VacuumCleaner(){}
 
-    VacuumCleaner(int powerConsumption,char filterType,String bagType,String wandType, int motorSpeed, int cleaningWidth){
-        this.powerConsumption=powerConsumption;
-        this.filterType=filterType;
-        this.bagType=bagType;
-        this.wandType=wandType;
-        this.motorSpeed=motorSpeed;
-        this.cleaningWidth=cleaningWidth;
-    }
 
     public VacuumCleaner(String[] components) {
         for(int i=1;i<components.length;i++) {

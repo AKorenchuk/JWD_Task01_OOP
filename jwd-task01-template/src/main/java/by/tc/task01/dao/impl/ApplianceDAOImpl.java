@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 import static by.tc.task01.entity.Appliance.createAppliance;
-import static by.tc.task01.service.validation.Validator.FieldType;
 
 public class ApplianceDAOImpl implements ApplianceDAO{
 
@@ -32,30 +31,19 @@ public class ApplianceDAOImpl implements ApplianceDAO{
                 boolean concurrency=false;
 				for (Map.Entry<E, Object> entry : mapCriteria.entrySet()) {
 
-                    Object typeCriteria = FieldType(criteria.getApplianceType(), entry.getKey());
-                    String pairCriteria=Criteria.getCriteriaToString(criteria.getApplianceType(), entry.getKey(),entry.getValue());
+                    String criteriaSearch=Criteria.getCriteriaToString(applianceType, entry.getKey(),entry.getValue());
 
 					for(int i = 1; i < infoAboutCriteria.length; i++) {
 
-						String[] searchCirteria = infoAboutCriteria[i].split("=");
-						Object s=null;
-                        String dfg= (String) (entry.getKey()+"");
+						String[] pairCriteria = infoAboutCriteria[i].split("=");
 
-						if(dfg.equals(searchCirteria[0])){
+						if((entry.getKey().toString()).equals(pairCriteria[0])){
 
-						    if(typeCriteria instanceof Double)
-						        s = Double.parseDouble(searchCirteria[1]);
-                            if(typeCriteria instanceof Integer)
-                                s = Integer.parseInt(searchCirteria[1]);
-                            if(typeCriteria instanceof Character)
-                                s =searchCirteria[1].charAt(0);
-                            if(typeCriteria instanceof String)
-                                s = searchCirteria[1];
+							String criteriaAppliance=Criteria.getCriteriaToString(applianceType, entry.getKey(),pairCriteria[1]);
+						    concurrency = criteriaSearch.equalsIgnoreCase(criteriaAppliance);
 
-                            concurrency = pairCriteria.equalsIgnoreCase(searchCirteria[0]+"="+s);
                             if(!concurrency) {
                                 break;
-
                             }
 						}
                     }

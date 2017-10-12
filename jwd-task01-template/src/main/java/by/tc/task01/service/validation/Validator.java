@@ -14,14 +14,11 @@ public class Validator {
 			Object criteriaValue=entry.getValue();
 			E criteriaName=entry.getKey();
 			// TODO:  if( checkFieldType(entry.getKey().getClass().getSimpleName(), applianceCriteria, criteriaValue)== false)
-            if(!check(criteria.getApplianceType(), criteriaName, criteriaValue))
-            	return false;
+            if(!checkCorrectValue(FieldType(criteria.getApplianceType(),criteriaName), criteriaValue)) {
+				return false;
+			}
 		}
 		return true;
-	}
-
-	private static <E> boolean check(String criteriaClass, E key, Object value){
-		return checkCorrectValue(FieldType(criteriaClass,key),value);
 	}
 
 	public static <E> Object FieldType(String criteriaClass, E key) {
@@ -137,6 +134,17 @@ public class Validator {
 				return true;
 			}
 			if(type instanceof Character && (value instanceof String && ((String) value).length()==1)) {
+				return true;
+			}
+
+			if(value instanceof String  && (type instanceof Double || type instanceof Integer)) {
+				try{
+					double a=Double.parseDouble(value.toString());
+				}
+				catch (Exception e){
+					e.printStackTrace();
+					return false;
+				}
 				return true;
 			}
 		}

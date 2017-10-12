@@ -15,15 +15,6 @@ public class Laptop extends Appliance{
 
     }
 
-//    public Laptop(double batteryCapacity, String os,int memoryROM, int systemMemory, double cpu, int displayInchs){
-//        this.batteryCapacity=batteryCapacity;
-//        this.os = os;
-//        this.memoryROM = memoryROM;
-//        this.systemMemory = systemMemory;
-//        this.cpu = cpu;
-//        this.displayInchs = displayInchs;
-//    }
-
     public Laptop(String[] components) {
         for(int i=0;i<components.length;i++){
             String[] word = components[i].split("=");

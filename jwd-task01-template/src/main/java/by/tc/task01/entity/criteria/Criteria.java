@@ -21,12 +21,12 @@ public class Criteria<E> {
 
 	public static <E>String getCriteriaToString(String applianceType,E criteria,Object value){
 		Object typeCriteria = (FieldType(applianceType, criteria));
-		Object temp=value.toString();
+		Object temp=null;
 
-		if (typeCriteria instanceof Double  && value instanceof Integer) {
+		if (typeCriteria instanceof Double  && (value instanceof Double || value instanceof String)) {
 			temp = Double.parseDouble( value.toString() );
 		}
-		if(typeCriteria instanceof Integer && value instanceof Double){
+		if(typeCriteria instanceof Integer && (value instanceof Double || value instanceof String)){
 			temp =(int) (Double.parseDouble(value.toString() ) + 0.5);
 		}
 		if(typeCriteria instanceof Character){
@@ -35,6 +35,10 @@ public class Criteria<E> {
 		if(typeCriteria.getClass()==value.getClass()){
 			temp = value.toString() ;
 		}
+		if(typeCriteria instanceof Character){
+			temp = (value.toString()).charAt(0); ;
+		}
+
 		return (String)(criteria + "=" + temp);
 	}
 
